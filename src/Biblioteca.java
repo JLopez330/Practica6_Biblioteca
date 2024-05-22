@@ -1,26 +1,56 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Biblioteca {
+public class Biblioteca extends JFrame implements ActionListener {
     private ArrayList<ElementoBiblioteca> elementos;
+
+    private JMenuBar barraMenu;
+    private JMenu menuAgregar;
+    private JMenuItem menuLibro, menuRevista, menuDVD;
+
     public Biblioteca(){
         elementos = new ArrayList<>();
+        iniciarMenu();
+
     }
 
-    public void menuPrincipalConsola(){
-        int opcion = -1;
+    public void iniciarMenu(){
+        setTitle("Biblioteca");
+        setSize(800,600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        barraMenu = new JMenuBar();
 
-        do{
-            System.out.println("========Biblioteca=======");
-            System.out.println("[1] Registrar Articulo");
-            System.out.println("[2] Buscar Articulo");
-            System.out.println("[3] Modificar Articulo");
-            System.out.println("[4] Eliminar Articulo");
-            System.out.println("[5] Salir");
-            System.out.println("=========================");
-        }while(opcion<5);
+        menuAgregar = new JMenu("Crear");
+        menuLibro = new JMenuItem("Libro");
+        menuRevista = new JMenuItem("Revista");
+        menuDVD = new JMenuItem("DVD");
+
+        menuAgregar.add(menuLibro);
+        menuAgregar.add(menuRevista);
+        menuAgregar.add(menuDVD);
+
+        barraMenu.add(menuAgregar);
+        setJMenuBar(barraMenu);
+
+        menuLibro.addActionListener(e -> crearLibro());
+        menuRevista.addActionListener(e -> crearRevista());
+        menuDVD.addActionListener(e -> crearDVD());
     }
 
-    public void crearElemento(){
+    public void crearLibro(){
+    FormularioLibro libro = new FormularioLibro();
+    this.getContentPane().add(libro);
+    Libro auxLibro = libro.generarLibro();
+    elementos.add(auxLibro);
+    }
+
+    public void crearRevista(){
+
+    }
+
+    public void crearDVD(){
 
     }
 
@@ -37,4 +67,13 @@ public class Biblioteca {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    public static void main(String[] args) {
+        Biblioteca gui = new Biblioteca();
+        gui.setVisible(true);
+    }
 }

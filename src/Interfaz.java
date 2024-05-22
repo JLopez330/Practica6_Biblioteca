@@ -15,7 +15,7 @@ public class Interfaz extends JFrame {
         panel.setBackground(Color.GREEN);
         this.getContentPane().add(panel);
 
-        JLabel etiqueta = new JLabel("sistema de gestión de biblioteca.");
+        JLabel etiqueta = new JLabel("Sistema de Gestión de Biblioteca.");
         etiqueta.setBounds(50,50,500,50);
         etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
         etiqueta.setFont(new Font("arial",2,30));

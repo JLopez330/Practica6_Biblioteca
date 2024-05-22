@@ -1,11 +1,11 @@
 public class ElementoBiblioteca {
     protected String titulo;
-    protected int año;
-    protected int id;
+    protected String fecha;
+    protected String id;
 
-    public ElementoBiblioteca(String titulo, int año, int id){
+    public ElementoBiblioteca(String titulo, String fecha, String id){
         this.titulo = titulo;
-        this.año = año;
+        this.fecha = fecha;
         this.id = id;
 
     }
@@ -18,25 +18,25 @@ public class ElementoBiblioteca {
         this.titulo = titulo;
     }
 
-    public int getAño() {
-        return año;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public void mostrarInformacion(){
+        System.out.println("Titulo: "+titulo);
         System.out.println("ID: "+id);
-        System.out.println("Titulo: "+id);
-        System.out.println("Año de publicación: "+año);
+        System.out.println("Año de publicación: "+fecha);
     }
 }

@@ -1,22 +1,20 @@
 public class Libro extends ElementoBiblioteca{
-    private int paginas;
+    private String paginas;
     private String editorial;
     private String autor;
-    private int numEdicion;
 
-    public Libro(String titulo, int año, int id, int paginas, String editorial, String autor, int numEdicion) {
-        super(titulo, año, id);
+    public Libro(String titulo, String fecha, String id, String paginas, String editorial, String autor) {
+        super(titulo, fecha, id);
         this.paginas = paginas;
         this.editorial = editorial;
         this.autor = autor;
-        this.numEdicion = numEdicion;
     }
 
-    public int getPaginas() {
+    public String getPaginas() {
         return paginas;
     }
 
-    public void setPaginas(int paginas) {
+    public void setPaginas(String paginas) {
         this.paginas = paginas;
     }
 
@@ -36,13 +34,6 @@ public class Libro extends ElementoBiblioteca{
         this.autor = autor;
     }
 
-    public int getNumEdicion() {
-        return numEdicion;
-    }
-
-    public void setNumEdicion(int numEdicion) {
-        this.numEdicion = numEdicion;
-    }
 
 
 }
