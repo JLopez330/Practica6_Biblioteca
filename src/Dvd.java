@@ -36,6 +36,7 @@ public class Dvd extends ElementoBiblioteca{
     }
 
     public void mostrarInformacion(){
+        System.out.println("Datos de un Dvd: ");
         super.mostrarInformacion();
         System.out.println("Director: "+director);
         System.out.println("Productora: "+productora);

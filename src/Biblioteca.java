@@ -19,6 +19,7 @@ public class Biblioteca extends JFrame implements ActionListener {
         setTitle("Biblioteca");
         setSize(800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         barraMenu = new JMenuBar();
 
         menuAgregar = new JMenu("Crear");
@@ -52,17 +53,13 @@ public class Biblioteca extends JFrame implements ActionListener {
     }
 
     public void crearRevista(){
-
+    FormularioRevista ventanaRevista = new FormularioRevista(inventario);
+    ventanaRevista.setVisible(true);
     }
 
     public void crearDvd(){
-        FormularioDvd dvd = new FormularioDvd();
-        this.getContentPane().add(dvd);
-        Dvd auxDvd = dvd.generarDvd();
-    }
-
-    public void crearDVD(){
-
+    FormularioDvd ventanaDvd = new FormularioDvd(inventario);
+    ventanaDvd.setVisible(true);
     }
 
     public void buscarElemento(int id){

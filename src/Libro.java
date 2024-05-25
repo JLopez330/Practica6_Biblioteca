@@ -35,6 +35,7 @@ public class Libro extends ElementoBiblioteca{
     }
 
     public void mostrarInformacion(){
+        System.out.println("Datos de un libro: ");
         super.mostrarInformacion();
         System.out.println("Paginas: "+paginas);
         System.out.println("Editorial: "+editorial);

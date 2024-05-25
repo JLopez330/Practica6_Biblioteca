@@ -43,4 +43,13 @@ public class Revista extends ElementoBiblioteca{
     public String getVolumen() {
         return volumen;
     }
+
+    public void mostrarInformacion(){
+        System.out.println("Datos de una Revista: ");
+        super.mostrarInformacion();
+        System.out.println("Paginas: "+paginas);
+        System.out.println("Editorial: "+editorial);
+        System.out.println("Autor: "+autor);
+        System.out.println("Volumen: "+volumen);
+    }
 }
