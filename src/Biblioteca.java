@@ -47,7 +47,10 @@ public class Biblioteca extends JFrame implements ActionListener {
     }
 
     public void crearRevista(){
-
+        FormularioLibro revista = new FormularioLibro();
+        this.getContentPane().add(revista);
+        Revista auxRevista = revista.generarRevista();
+        elementos.add(auxRevista);
     }
 
     public void crearDVD(){
