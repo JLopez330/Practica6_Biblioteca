@@ -34,6 +34,11 @@ public class Libro extends ElementoBiblioteca{
         this.autor = autor;
     }
 
-
+    public void mostrarInformacion(){
+        super.mostrarInformacion();
+        System.out.println("Paginas: "+paginas);
+        System.out.println("Editorial: "+editorial);
+        System.out.println("Autor: "+autor);
+    }
 
 }

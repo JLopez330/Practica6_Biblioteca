@@ -4,14 +4,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Biblioteca extends JFrame implements ActionListener {
-    private ArrayList<ElementoBiblioteca> elementos;
-
+    private Inventario inventario;
     private JMenuBar barraMenu;
-    private JMenu menuAgregar;
-    private JMenuItem menuLibro, menuRevista, menuDVD;
+    private JMenu menuAgregar,menuTest;
+    private JMenuItem menuLibro, menuRevista, menuDVD, testContenido;
 
     public Biblioteca(){
-        elementos = new ArrayList<>();
+        inventario = new Inventario();
         iniciarMenu();
 
     }
@@ -27,37 +26,39 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuRevista = new JMenuItem("Revista");
         menuDVD = new JMenuItem("DVD");
 
+        menuTest = new JMenu("Test");
+        testContenido = new JMenuItem("Contenido");
+
         menuAgregar.add(menuLibro);
         menuAgregar.add(menuRevista);
         menuAgregar.add(menuDVD);
 
+        menuTest.add(testContenido);
+
         barraMenu.add(menuAgregar);
+        barraMenu.add(menuTest);
         setJMenuBar(barraMenu);
+
 
         menuLibro.addActionListener(e -> crearLibro());
         menuRevista.addActionListener(e -> crearRevista());
         menuDVD.addActionListener(e -> crearDvd());
+        testContenido.addActionListener(e -> testMostrarContenido());
     }
 
     public void crearLibro(){
-    FormularioLibro libro = new FormularioLibro();
-    this.getContentPane().add(libro);
-    Libro auxLibro = libro.generarLibro();
-    elementos.add(auxLibro);
+    FormularioLibro ventanaLibro = new FormularioLibro(inventario);
+    ventanaLibro.setVisible(true);
     }
 
     public void crearRevista(){
-        FormularioRevista revista = new FormularioRevista();
-        this.getContentPane().add(revista);
-        Revista auxRevista = revista.generarRevista();
-        elementos.add(auxRevista);
+
     }
 
     public void crearDvd(){
         FormularioDvd dvd = new FormularioDvd();
         this.getContentPane().add(dvd);
         Dvd auxDvd = dvd.generarDvd();
-        elementos.add(auxDvd);
     }
 
     public void crearDVD(){
@@ -76,6 +77,9 @@ public class Biblioteca extends JFrame implements ActionListener {
 
     }
 
+    public void testMostrarContenido(){
+        inventario.mostrarContenidoEnConsola();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
