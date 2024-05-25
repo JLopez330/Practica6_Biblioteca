@@ -4,7 +4,7 @@ public class Test {
         //v1.setVisible(true);
         //v1.iniciarComponentes();
 
-        Dvd prueba = new Dvd("Prueba","2024", "04442", "Yo", "La que produce", 90);
+        Dvd prueba = new Dvd("Prueba","2024", "04442", "Yo", "La que produce", "90");
         prueba.mostrarInformacion();
     }
 }

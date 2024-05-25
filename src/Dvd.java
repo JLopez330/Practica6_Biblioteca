@@ -1,10 +1,9 @@
 public class Dvd extends ElementoBiblioteca{
     private String director;
-    private String film;
     private String productora;
-    private int duracion;
+    private String duracion;
 
-    public Dvd(String titulo, String fecha, String id, String director, String productora, int duracion) {
+    public Dvd(String titulo, String fecha, String id, String director, String productora, String duracion) {
         super(titulo, fecha, id);
         this.director = director;
         this.productora = productora;
@@ -19,13 +18,6 @@ public class Dvd extends ElementoBiblioteca{
         this.director = director;
     }
 
-    public String getFilm() {
-        return film;
-    }
-
-    public void setFilm(String film) {
-        this.film = film;
-    }
 
     public String getProductora() {
         return productora;
@@ -35,11 +27,11 @@ public class Dvd extends ElementoBiblioteca{
         this.productora = productora;
     }
 
-    public int getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 
