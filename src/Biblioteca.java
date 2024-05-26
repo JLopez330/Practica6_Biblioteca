@@ -55,12 +55,12 @@ public class Biblioteca extends JFrame implements ActionListener {
     }
 
     public void crearRevista(){
-    FormularioRevista ventanaRevista = new FormularioRevista(inventario);
+    FormularioRevista ventanaRevista = new FormularioRevista(inventario,idsAlmacenadas);
     ventanaRevista.setVisible(true);
     }
 
     public void crearDvd(){
-    FormularioDvd ventanaDvd = new FormularioDvd(inventario);
+    FormularioDvd ventanaDvd = new FormularioDvd(inventario,idsAlmacenadas);
     ventanaDvd.setVisible(true);
     }
 

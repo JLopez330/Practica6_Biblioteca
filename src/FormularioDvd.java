@@ -1,16 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FormularioDvd extends JFrame {
     private Container contenedor;
     private Inventario inventario;
+    private ArrayList<String> idsRegistro;
     private Dvd dvd;
     private JLabel titulo,id,fecha,director,productora,duracion;
     private JTextField tituloField,idField,fechaField,directorField,productoraField,duracionField;
     private JButton guardarButton, limpiarButton;
 
-    public FormularioDvd(Inventario inventario){
-
+    public FormularioDvd(Inventario inventario, ArrayList<String> ids){
+        idsRegistro = ids;
         this.inventario = inventario;
         iniciarFormulario();
         setTitle("Agregar Dvd");
@@ -101,14 +103,25 @@ public class FormularioDvd extends JFrame {
         try {
             String titulo = tituloField.getText();
             String id = idField.getText();
+            String aux = id;
             String fecha = fechaField.getText();
             String director = directorField.getText();
             String productora = productoraField.getText();
             String duracion = duracionField.getText();
-            dvd = new Dvd(titulo, fecha, id, director, productora, duracion);
-            inventario.agregarAlInventario(dvd);
-            JOptionPane.showMessageDialog(this,"Dvd añadido!","Atencion!",JOptionPane.INFORMATION_MESSAGE);
-            limpiarEspacios();
+            try{
+                Excepcion_Duplicado_De_Id expecion = verificarId(aux);
+                if(expecion!=null){
+                    throw expecion;
+                }else{
+                    idsRegistro.add(aux);
+                    dvd = new Dvd(titulo, fecha, id, director, productora, duracion);
+                    inventario.agregarAlInventario(dvd);
+                    JOptionPane.showMessageDialog(this,"Libro añadido!","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                    limpiarEspacios();
+                }
+            }catch (Excepcion_Duplicado_De_Id e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Error en captura de datos","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -125,5 +138,17 @@ public class FormularioDvd extends JFrame {
 
     public Dvd mandarDvd(){;
         return dvd;
+    }
+
+    public Excepcion_Duplicado_De_Id verificarId(String id){
+        if(!idsRegistro.isEmpty()){
+            for (String identificador: idsRegistro) {
+                if(identificador.equals(id)){
+                    return new Excepcion_Duplicado_De_Id("La ID ya se encuentra registrada");
+                }
+            }
+
+        }
+        return null;
     }
 }

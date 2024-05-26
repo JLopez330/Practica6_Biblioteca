@@ -1,16 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FormularioRevista extends JFrame {
     private Container contenedor;
     private Inventario inventario;
+    private ArrayList<String> idsRegistro;
     private Revista revista;
     private JLabel titulo,id,fecha,paginas,editorial,autor,volumen;
     private JTextField tituloField,idField,fechaField,paginasField,editorialField,autorField,volumenField;
     private JButton guardarButton, limpiarButton;
 
-    public FormularioRevista(Inventario inventario){
-
+    public FormularioRevista(Inventario inventario, ArrayList<String> ids){
+        idsRegistro = ids;
         this.inventario = inventario;
         iniciarFormulario();
         setTitle("Agregar Revista");
@@ -110,15 +112,26 @@ public class FormularioRevista extends JFrame {
         try {
             String titulo = tituloField.getText();
             String id = idField.getText();
+            String aux = id;
             String fecha = fechaField.getText();
             String paginas = paginasField.getText();
             String editorial = editorialField.getText();
             String autor = autorField.getText();
-            String volumen = volumenField.getText();
-            revista = new Revista(titulo, fecha, id, paginas, editorial, autor,volumen);
-            inventario.agregarAlInventario(revista);
-            JOptionPane.showMessageDialog(this,"Revista añadido!","Atencion!",JOptionPane.INFORMATION_MESSAGE);
-            limpiarEspacios();
+            String volumen = autorField.getText();
+            try{
+                Excepcion_Duplicado_De_Id expecion = verificarId(aux);
+                if(expecion!=null){
+                    throw expecion;
+                }else{
+                    idsRegistro.add(aux);
+                    revista = new Revista(titulo, fecha, id, paginas, editorial, autor, volumen);
+                    inventario.agregarAlInventario(revista);
+                    JOptionPane.showMessageDialog(this,"Revista añadido!","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                    limpiarEspacios();
+                }
+            }catch (Excepcion_Duplicado_De_Id e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Error en captura de datos","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -136,5 +149,17 @@ public class FormularioRevista extends JFrame {
 
     public Revista mandarRevista(){;
         return revista;
+    }
+
+    public Excepcion_Duplicado_De_Id verificarId(String id){
+        if(!idsRegistro.isEmpty()){
+            for (String identificador: idsRegistro) {
+                if(identificador.equals(id)){
+                    return new Excepcion_Duplicado_De_Id("La ID ya se encuentra registrada");
+                }
+            }
+
+        }
+        return null;
     }
 }
