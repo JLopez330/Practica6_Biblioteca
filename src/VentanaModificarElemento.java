@@ -1,6 +1,10 @@
+/**
+ * Crea la ventana para Modificar un Elemento en el Inventario
+ * y su respectivo método
+ */
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class VentanaModificarElemento extends JFrame {
     private Inventario inventario;
@@ -43,6 +47,10 @@ public class VentanaModificarElemento extends JFrame {
         contenedor.add(modificar);
     }
 
+    /**
+     * Método para la modificación del elemento deseado
+     * con respecto a la ID capturada
+     */
     public void modificarElemento() {
         String id = idField.getText();
         try {
@@ -57,6 +65,9 @@ public class VentanaModificarElemento extends JFrame {
         }
     }
 
+    /**
+     * Abre la ventana para la edición del elemento
+     */
     private void abrirVentanaModificar(ElementoBiblioteca elemento) {
         JFrame ventanaModificar = new JFrame("Modificar Elemento");
         ventanaModificar.setSize(400, 400);

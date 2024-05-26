@@ -1,3 +1,7 @@
+/**
+ * Da forma a la lógica de un DVD en biblioteca
+ */
+
 public class Dvd extends ElementoBiblioteca{
     private String director;
     private String productora;

@@ -1,3 +1,7 @@
+/**
+ * Da forma a la ventana para añadir un DVD y sus métodos
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -127,6 +131,9 @@ public class FormularioDvd extends JFrame {
         }
     }
 
+    /**
+     * Limpia las cajas de texto en la ventana
+     */
     public void limpiarEspacios(){
         tituloField.setText("");
         idField.setText("");
@@ -136,6 +143,10 @@ public class FormularioDvd extends JFrame {
         duracionField.setText("");
     }
 
+    /**
+     * Verifica si la ID se encuentra disponible y no está
+     * repetida dentro del ArrayList de IDs guardadas
+     */
     public Excepcion_Duplicado_De_Id verificarId(String id){
         if(!idsRegistro.isEmpty()){
             for (String identificador: idsRegistro) {

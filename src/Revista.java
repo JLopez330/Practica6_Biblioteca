@@ -1,3 +1,6 @@
+/**
+ * Modela la Lógica de una Revista
+ */
 public class Revista extends ElementoBiblioteca{
     private String paginas;
     private String editorial;

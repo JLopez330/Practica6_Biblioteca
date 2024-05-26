@@ -1,3 +1,8 @@
+/**
+ * Es la clase padre que da forma a la lógica de las clases
+ * Libro, Revista y Biblioteca
+ */
+
 public class ElementoBiblioteca {
     protected String titulo;
     protected String fecha;

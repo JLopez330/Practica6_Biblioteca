@@ -1,3 +1,8 @@
+/**
+ * Crea la vetnana de Eliminación de objeto en inventario y su
+ * respectivo método
+ */
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -45,6 +50,10 @@ public class VentanaEliminarElemento extends JFrame {
 
     }
 
+    /**
+     * Elimina el elemento deseado con respecto a la ID
+     * ingresada en el campo de texto
+     */
     public void eliminarElemento(){
         String id=idField.getText();
         try{

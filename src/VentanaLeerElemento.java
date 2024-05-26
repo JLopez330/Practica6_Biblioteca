@@ -91,7 +91,7 @@ public class VentanaLeerElemento extends JFrame {
 
         // Etiqueta y campo de texto para la ID a leer
         texto = new JLabel();
-        texto.setText("Se a cerrado la lectura");
+        texto.setText("Se ha cerrado la lectura");
         texto.setBounds(20, 20, 135, 23);
         contenedor.add(texto);
     }

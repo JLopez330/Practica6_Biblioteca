@@ -1,3 +1,6 @@
+/**
+ * Modela la lógica de un Libro
+ */
 public class Libro extends ElementoBiblioteca{
     private String paginas;
     private String editorial;

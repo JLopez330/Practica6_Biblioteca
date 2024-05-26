@@ -1,15 +1,18 @@
+/**
+ * Maneja la lógica de la biblioteca junto a sus respectivas ventanas
+ * de la interfaz grafica
+ */
+
 import javax.swing.*;
 import java.io.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Biblioteca extends JFrame implements ActionListener {
+public class Biblioteca extends JFrame{
     private Inventario inventario;
     private ArrayList<String> idsAlmacenadas;
     private JMenuBar barraMenu;
-    private JMenu menuArchivo,menuAgregar,menuModificar,menuTest;
-    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, menuSobrescribir,guardar,testContenido;
+    private JMenu menuArchivo,menuAgregar,menuModificar;
+    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, menuSobrescribir,guardar;
 
     public Biblioteca(){
         inventario = new Inventario();
@@ -38,13 +41,9 @@ public class Biblioteca extends JFrame implements ActionListener {
 
         //Creación del menu para modificar la biblioteca (Leer, Editar, Eliminar)
         menuModificar = new JMenu("Modificar");
-        menuEliminar = new JMenuItem("Eliminar");
         menuLeer = new JMenuItem("Leer");
         menuSobrescribir = new JMenuItem("Sobrescribir");
-
-        //Esto es un menu de test, lo eliminaremos al final
-        menuTest = new JMenu("Test");
-        testContenido = new JMenuItem("Contenido");
+        menuEliminar = new JMenuItem("Eliminar");
 
         menuArchivo.add(guardar);
 
@@ -53,15 +52,12 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuAgregar.add(menuDVD);
 
         menuModificar.add(menuLeer);
-        menuModificar.add(menuEliminar);
         menuModificar.add(menuSobrescribir);
-
-        menuTest.add(testContenido);
+        menuModificar.add(menuEliminar);
 
         barraMenu.add(menuArchivo);
         barraMenu.add(menuAgregar);
         barraMenu.add(menuModificar);
-        barraMenu.add(menuTest);
         setJMenuBar(barraMenu);
 
         //ActionListeners de los menús
@@ -70,13 +66,13 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuDVD.addActionListener(e -> crearDvd());
         menuEliminar.addActionListener(e -> eliminarElemento());
         menuLeer.addActionListener(e -> leerElementoOElementos());
-        menuSobrescribir.addActionListener(e -> sobrescribitElemento());
-        testContenido.addActionListener(e -> testMostrarContenido());
+        menuSobrescribir.addActionListener(e -> sobrescribirElemento());
         guardar.addActionListener(e->guardarInventario());
 
 
     }
 
+    //Métodos para añadir Un Libro, Una Revista y Un DVD
     public void crearLibro(){
     FormularioLibro ventanaLibro = new FormularioLibro(inventario,idsAlmacenadas);
     ventanaLibro.setVisible(true);
@@ -92,19 +88,13 @@ public class Biblioteca extends JFrame implements ActionListener {
     ventanaDvd.setVisible(true);
     }
 
-    public void buscarElemento(){
-
-    }
-
-    public void editarElemento(){
-
-    }
-
+    //Método para llamar la vetana de Eliminar Elemento
     public void eliminarElemento(){
     VentanaEliminarElemento ventanaEliminar = new VentanaEliminarElemento(inventario);
     ventanaEliminar.setVisible(true);
     }
 
+    //Método para llamar la ventana de Leer Elemento
     public void leerElementoOElementos(){
     VentanaLeerElemento ventanaLeer = new VentanaLeerElemento(inventario);
         if(ventanaLeer.pregunta()!=2) {
@@ -113,7 +103,9 @@ public class Biblioteca extends JFrame implements ActionListener {
             ventanaLeer.setVisible(false);
         }
     }
-    public void sobrescribitElemento(){
+
+
+    public void sobrescribirElemento(){
     VentanaModificarElemento ventanaSobrescribir = new VentanaModificarElemento(inventario);
     ventanaSobrescribir.setVisible(true);
     }
@@ -156,17 +148,4 @@ public class Biblioteca extends JFrame implements ActionListener {
         }
     }
 
-    public void testMostrarContenido(){
-        inventario.mostrarContenidoEnConsola();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    public static void main(String[] args) {
-        Biblioteca gui = new Biblioteca();
-        gui.setVisible(true);
-    }
 }
