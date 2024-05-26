@@ -92,7 +92,7 @@ public class Biblioteca extends JFrame{
     public void creditos(){
         JOptionPane.showMessageDialog(null,"Alumnos:\nJosé Alejandro López Cuevas\n" +
                 "Luis Fernando Prieto Duarte\nMatriculas:\n1169995\n" +
-                "1190227\n","Créditos",JOptionPane.INFORMATION_MESSAGE);
+                "1190227\n"+"Musica: Quiet_Ocean\nAutor: PeriTune\n","Créditos",JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void iniciarFondoImagen() {
