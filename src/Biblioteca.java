@@ -5,12 +5,14 @@ import java.util.ArrayList;
 
 public class Biblioteca extends JFrame implements ActionListener {
     private Inventario inventario;
+    private ArrayList<String> idsAlmacenadas;
     private JMenuBar barraMenu;
     private JMenu menuAgregar,menuTest;
     private JMenuItem menuLibro, menuRevista, menuDVD, testContenido;
 
     public Biblioteca(){
         inventario = new Inventario();
+        idsAlmacenadas = new ArrayList<>();
         iniciarMenu();
 
     }
@@ -48,7 +50,7 @@ public class Biblioteca extends JFrame implements ActionListener {
     }
 
     public void crearLibro(){
-    FormularioLibro ventanaLibro = new FormularioLibro(inventario);
+    FormularioLibro ventanaLibro = new FormularioLibro(inventario,idsAlmacenadas);
     ventanaLibro.setVisible(true);
     }
 

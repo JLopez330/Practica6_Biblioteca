@@ -1,16 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FormularioLibro extends JFrame {
     private Container contenedor;
     private Inventario inventario;
+    private ArrayList<String> idsRegistro;
     private Libro libro;
     private JLabel titulo,id,fecha,paginas,editorial,autor;
     private JTextField tituloField,idField,fechaField,paginasField,editorialField,autorField;
     private JButton guardarButton, limpiarButton;
 
-    public FormularioLibro(Inventario inventario){
-
+    public FormularioLibro(Inventario inventario, ArrayList<String> ids){
+        idsRegistro = ids;
         this.inventario = inventario;
         iniciarFormulario();
         setTitle("Agregar Libro");
@@ -101,14 +103,25 @@ public class FormularioLibro extends JFrame {
         try {
             String titulo = tituloField.getText();
             String id = idField.getText();
+            String aux = id;
             String fecha = fechaField.getText();
             String paginas = paginasField.getText();
             String editorial = editorialField.getText();
             String autor = autorField.getText();
-            libro = new Libro(titulo, fecha, id, paginas, editorial, autor);
-            inventario.agregarAlInventario(libro);
-            JOptionPane.showMessageDialog(this,"Libro añadido!","Atencion!",JOptionPane.INFORMATION_MESSAGE);
-            limpiarEspacios();
+            try{
+                Excepcion_Duplicado_De_Id expecion = verificarId(aux);
+                if(expecion!=null){
+                    throw expecion;
+                }else{
+                    idsRegistro.add(aux);
+                    libro = new Libro(titulo, fecha, id, paginas, editorial, autor);
+                    inventario.agregarAlInventario(libro);
+                    JOptionPane.showMessageDialog(this,"Libro añadido!","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                    limpiarEspacios();
+                }
+            }catch (Excepcion_Duplicado_De_Id e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Error en captura de datos","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -123,7 +136,15 @@ public class FormularioLibro extends JFrame {
         autorField.setText("");
     }
 
-    public Libro mandarLibro(){;
-        return libro;
+    public Excepcion_Duplicado_De_Id verificarId(String id){
+            if(!idsRegistro.isEmpty()){
+                for (String identificador: idsRegistro) {
+                    if(identificador.equals(id)){
+                        return new Excepcion_Duplicado_De_Id("La ID ya se encuentra registrada");
+                    }
+                }
+
+            }
+            return null;
     }
 }
