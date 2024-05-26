@@ -19,7 +19,7 @@ public class Biblioteca extends JFrame{
     private JMenu menuArchivo,menuAgregar,menuModificar;
     private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, menuSobrescribir,guardar;
     private Clip musicaClip;
-    private JButton botonSilencio;
+    private JButton botonSilencio,botonCreditos;
     private boolean isMuted = false;
 
     public Biblioteca(){
@@ -82,7 +82,19 @@ public class Biblioteca extends JFrame{
         botonSilencio.setBounds(650, 20, 130, 25);
         botonSilencio.addActionListener(e -> toggleMusica());
         getContentPane().add(botonSilencio);
+
+        botonCreditos = new JButton("Créditos");
+        botonCreditos.setBounds(650,500,130,25);
+        botonCreditos.addActionListener(e -> creditos());
+        getContentPane().add(botonCreditos);
     }
+
+    public void creditos(){
+        JOptionPane.showMessageDialog(null,"Alumnos:\nJosé Alejandro López Cuevas\n" +
+                "Luis Fernando Prieto Duarte\nMatriculas:\n1169995\n" +
+                "1190227\n","Créditos",JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void iniciarFondoImagen() {
         // Cargar imagen de fondo
         JLabel background = new JLabel(new ImageIcon("Fondo.jpg"));
@@ -90,6 +102,7 @@ public class Biblioteca extends JFrame{
         background.setLayout(new BorderLayout());
         background.setLayout(null); // Use null layout to allow absolute positioning
         background.add(botonSilencio);
+        background.add(botonCreditos);
     }
 
     public void iniciarMusicaFondo() {
