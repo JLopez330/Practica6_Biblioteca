@@ -1,10 +1,15 @@
 /**
  * Maneja la lógica de la biblioteca junto a sus respectivas ventanas
- * de la interfaz grafica
+ * de la interfaz gráfica
  */
 
+import javax.sound.sampled.*;
 import javax.swing.*;
-import java.io.*;
+import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Biblioteca extends JFrame{
@@ -13,12 +18,16 @@ public class Biblioteca extends JFrame{
     private JMenuBar barraMenu;
     private JMenu menuArchivo,menuAgregar,menuModificar;
     private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, menuSobrescribir,guardar;
+    private Clip musicaClip;
+    private JButton botonSilencio;
+    private boolean isMuted = false;
 
     public Biblioteca(){
         inventario = new Inventario();
         idsAlmacenadas = new ArrayList<>();
         iniciarMenu();
-
+        iniciarMusicaFondo();
+        iniciarFondoImagen();
     }
 
     public void iniciarMenu(){
@@ -69,7 +78,43 @@ public class Biblioteca extends JFrame{
         menuSobrescribir.addActionListener(e -> sobrescribirElemento());
         guardar.addActionListener(e->guardarInventario());
 
+        botonSilencio = new JButton("Silenciar Música");
+        botonSilencio.setBounds(650, 20, 130, 25);
+        botonSilencio.addActionListener(e -> toggleMusica());
+        getContentPane().add(botonSilencio);
+    }
+    public void iniciarFondoImagen() {
+        // Cargar imagen de fondo
+        JLabel background = new JLabel(new ImageIcon("Fondo.jpg"));
+        setContentPane(background);
+        background.setLayout(new BorderLayout());
+        background.setLayout(null); // Use null layout to allow absolute positioning
+        background.add(botonSilencio);
+    }
 
+    public void iniciarMusicaFondo() {
+        try {
+            File audioFile = new File("MusicaFondo.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            musicaClip = AudioSystem.getClip();
+            musicaClip.open(audioStream);
+            musicaClip.loop(Clip.LOOP_CONTINUOUSLY);
+            musicaClip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void toggleMusica() {
+        if (isMuted) {
+            musicaClip.start();
+            musicaClip.loop(Clip.LOOP_CONTINUOUSLY);
+            botonSilencio.setText("Silenciar Música");
+        } else {
+            musicaClip.stop();
+            botonSilencio.setText("Activar Música");
+        }
+        isMuted = !isMuted;
     }
 
     //Métodos para añadir Un Libro, Una Revista y Un DVD
