@@ -20,7 +20,7 @@ public class Biblioteca extends JFrame{
     private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, menuSobrescribir,guardar;
     private Clip musicaClip;
     private JButton botonSilencio,botonCreditos;
-    private boolean isMuted = false;
+    private boolean isMuted = true;
 
     public Biblioteca(){
         inventario = new Inventario();
@@ -78,7 +78,7 @@ public class Biblioteca extends JFrame{
         menuSobrescribir.addActionListener(e -> sobrescribirElemento());
         guardar.addActionListener(e->guardarInventario());
 
-        botonSilencio = new JButton("Silenciar Música");
+        botonSilencio = new JButton("Activar Música");
         botonSilencio.setBounds(650, 20, 130, 25);
         botonSilencio.addActionListener(e -> toggleMusica());
         getContentPane().add(botonSilencio);
@@ -112,7 +112,7 @@ public class Biblioteca extends JFrame{
             musicaClip = AudioSystem.getClip();
             musicaClip.open(audioStream);
             musicaClip.loop(Clip.LOOP_CONTINUOUSLY);
-            musicaClip.start();
+            musicaClip.stop();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
