@@ -8,7 +8,7 @@ public class Biblioteca extends JFrame implements ActionListener {
     private ArrayList<String> idsAlmacenadas;
     private JMenuBar barraMenu;
     private JMenu menuAgregar,menuModificar,menuTest;
-    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, testContenido;
+    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, testContenido;
 
     public Biblioteca(){
         inventario = new Inventario();
@@ -33,6 +33,7 @@ public class Biblioteca extends JFrame implements ActionListener {
         //Creación del menu para modificar la biblioteca (Leer, Editar, Eliminar)
         menuModificar = new JMenu("Modificar");
         menuEliminar = new JMenuItem("Eliminar");
+        menuLeer = new JMenuItem("Leer");
 
         //Esto es un menu de test, lo eliminaremos al final
         menuTest = new JMenu("Test");
@@ -43,7 +44,7 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuAgregar.add(menuDVD);
 
         menuModificar.add(menuEliminar);
-
+        menuModificar.add(menuLeer);
 
         menuTest.add(testContenido);
 
@@ -56,6 +57,7 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuRevista.addActionListener(e -> crearRevista());
         menuDVD.addActionListener(e -> crearDvd());
         menuEliminar.addActionListener(e -> eliminarElemento());
+        menuLeer.addActionListener(e -> leerElementoOElementos());
         testContenido.addActionListener(e -> testMostrarContenido());
     }
 
@@ -85,6 +87,15 @@ public class Biblioteca extends JFrame implements ActionListener {
     public void eliminarElemento(){
     VentanaEliminarElemento ventanaEliminar = new VentanaEliminarElemento(inventario);
     ventanaEliminar.setVisible(true);
+    }
+
+    public void leerElementoOElementos(){
+    VentanaLeerElemento ventanaLeer = new VentanaLeerElemento(inventario);
+        if(ventanaLeer.pregunta()!=2) {
+            ventanaLeer.setVisible(true);
+        }else{
+            ventanaLeer.setVisible(false);
+        }
     }
 
     public void testMostrarContenido(){

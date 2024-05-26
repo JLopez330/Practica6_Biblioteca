@@ -42,4 +42,10 @@ public class Dvd extends ElementoBiblioteca{
         System.out.println("Productora: "+productora);
         System.out.println("Duracion: "+duracion+" minutos");
     }
+    public String toString() {
+        return "Datos de un Dvd: \n" + super.toString() +
+                "Director: " + director + "\n" +
+                "Productora: " + productora + "\n" +
+                "Duración: " + duracion + " minutos";
+    }
 }

@@ -31,4 +31,17 @@ public class Inventario {
             elementos.mostrarInformacion();
         }
     }
+
+    public ElementoBiblioteca obtenerElementoPorId(String id) {
+        for (ElementoBiblioteca elemento : inventario) {
+            if (id.equals(elemento.getId())) {
+                return elemento;
+            }
+        }
+        return null; // Devolver null si no se encuentra el elemento con el ID dado
+    }
+
+    public ArrayList<ElementoBiblioteca> obtenerTodosLosElementos() {
+        return inventario;
+    }
 }

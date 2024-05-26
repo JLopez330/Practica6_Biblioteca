@@ -42,4 +42,10 @@ public class Libro extends ElementoBiblioteca{
         System.out.println("Autor: "+autor);
     }
 
+    public String toString() {
+        return "Datos de un libro: \n" + super.toString() +
+                "Paginas: " + paginas + "\n" +
+                "Editorial: " + editorial + "\n" +
+                "Autor: " + autor;
+    }
 }

@@ -39,4 +39,10 @@ public class ElementoBiblioteca {
         System.out.println("ID: "+id);
         System.out.println("Año de publicación: "+fecha);
     }
+
+    public String toString() {
+        return "Titulo: " + titulo + "\n" +
+                "ID: " + id + "\n" +
+                "Año de publicación: " + fecha + "\n";
+    }
 }
