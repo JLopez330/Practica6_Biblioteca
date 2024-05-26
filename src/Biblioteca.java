@@ -9,7 +9,7 @@ public class Biblioteca extends JFrame implements ActionListener {
     private ArrayList<String> idsAlmacenadas;
     private JMenuBar barraMenu;
     private JMenu menuArchivo,menuAgregar,menuModificar,menuTest;
-    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, guardar,testContenido;
+    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, menuLeer, menuSobrescribir,guardar,testContenido;
 
     public Biblioteca(){
         inventario = new Inventario();
@@ -40,6 +40,7 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuModificar = new JMenu("Modificar");
         menuEliminar = new JMenuItem("Eliminar");
         menuLeer = new JMenuItem("Leer");
+        menuSobrescribir = new JMenuItem("Sobrescribir");
 
         //Esto es un menu de test, lo eliminaremos al final
         menuTest = new JMenu("Test");
@@ -53,6 +54,7 @@ public class Biblioteca extends JFrame implements ActionListener {
 
         menuModificar.add(menuLeer);
         menuModificar.add(menuEliminar);
+        menuModificar.add(menuSobrescribir);
 
         menuTest.add(testContenido);
 
@@ -68,6 +70,7 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuDVD.addActionListener(e -> crearDvd());
         menuEliminar.addActionListener(e -> eliminarElemento());
         menuLeer.addActionListener(e -> leerElementoOElementos());
+        menuSobrescribir.addActionListener(e -> sobrescribitElemento());
         testContenido.addActionListener(e -> testMostrarContenido());
         guardar.addActionListener(e->guardarInventario());
 
@@ -109,6 +112,10 @@ public class Biblioteca extends JFrame implements ActionListener {
         }else{
             ventanaLeer.setVisible(false);
         }
+    }
+    public void sobrescribitElemento(){
+    VentanaModificarElemento ventanaSobrescribir = new VentanaModificarElemento(inventario);
+    ventanaSobrescribir.setVisible(true);
     }
 
     public void guardarInventario(){
