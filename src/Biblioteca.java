@@ -7,8 +7,8 @@ public class Biblioteca extends JFrame implements ActionListener {
     private Inventario inventario;
     private ArrayList<String> idsAlmacenadas;
     private JMenuBar barraMenu;
-    private JMenu menuAgregar,menuTest;
-    private JMenuItem menuLibro, menuRevista, menuDVD, testContenido;
+    private JMenu menuAgregar,menuModificar,menuTest;
+    private JMenuItem menuLibro, menuRevista, menuDVD, menuEliminar, testContenido;
 
     public Biblioteca(){
         inventario = new Inventario();
@@ -24,11 +24,17 @@ public class Biblioteca extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         barraMenu = new JMenuBar();
 
+        //Creación del menu para Añadir Libros
         menuAgregar = new JMenu("Crear");
         menuLibro = new JMenuItem("Libro");
         menuRevista = new JMenuItem("Revista");
         menuDVD = new JMenuItem("DVD");
 
+        //Creación del menu para modificar la biblioteca (Leer, Editar, Eliminar)
+        menuModificar = new JMenu("Modificar");
+        menuEliminar = new JMenuItem("Eliminar");
+
+        //Esto es un menu de test, lo eliminaremos al final
         menuTest = new JMenu("Test");
         testContenido = new JMenuItem("Contenido");
 
@@ -36,16 +42,20 @@ public class Biblioteca extends JFrame implements ActionListener {
         menuAgregar.add(menuRevista);
         menuAgregar.add(menuDVD);
 
+        menuModificar.add(menuEliminar);
+
+
         menuTest.add(testContenido);
 
         barraMenu.add(menuAgregar);
+        barraMenu.add(menuModificar);
         barraMenu.add(menuTest);
         setJMenuBar(barraMenu);
-
 
         menuLibro.addActionListener(e -> crearLibro());
         menuRevista.addActionListener(e -> crearRevista());
         menuDVD.addActionListener(e -> crearDvd());
+        menuEliminar.addActionListener(e -> eliminarElemento());
         testContenido.addActionListener(e -> testMostrarContenido());
     }
 
@@ -64,16 +74,17 @@ public class Biblioteca extends JFrame implements ActionListener {
     ventanaDvd.setVisible(true);
     }
 
-    public void buscarElemento(int id){
+    public void buscarElemento(){
 
     }
 
-    public void modificarElemento(int id){
+    public void editarElemento(){
 
     }
 
-    public void eliminarElemento(int id){
-
+    public void eliminarElemento(){
+    VentanaEliminarElemento ventanaEliminar = new VentanaEliminarElemento(inventario);
+    ventanaEliminar.setVisible(true);
     }
 
     public void testMostrarContenido(){

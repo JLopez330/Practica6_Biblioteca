@@ -29,7 +29,7 @@ public class FormularioLibro extends JFrame {
 
         //Etiqueta y campo de texto para el Titulo
         titulo = new JLabel();
-        titulo.setText("Nombre:");
+        titulo.setText("Titulo:");
         titulo.setBounds(20,20,135,23);
         tituloField = new JTextField();
         tituloField.setBounds(160,20,100,23);
@@ -69,7 +69,7 @@ public class FormularioLibro extends JFrame {
         autorField = new JTextField();
         autorField.setBounds(160,170,100,23);
 
-        //Botes para guardar y para limpiar campos
+        //Botones para guardar y para limpiar campos
         guardarButton = new JButton();
         guardarButton.setText("Agregar");
         guardarButton.setBounds(20,200,80,25);

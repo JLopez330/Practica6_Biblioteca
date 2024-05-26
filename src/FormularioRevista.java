@@ -126,7 +126,7 @@ public class FormularioRevista extends JFrame {
                     idsRegistro.add(aux);
                     revista = new Revista(titulo, fecha, id, paginas, editorial, autor, volumen);
                     inventario.agregarAlInventario(revista);
-                    JOptionPane.showMessageDialog(this,"Revista añadido!","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Revista añadida!","Atencion",JOptionPane.INFORMATION_MESSAGE);
                     limpiarEspacios();
                 }
             }catch (Excepcion_Duplicado_De_Id e) {
@@ -145,10 +145,6 @@ public class FormularioRevista extends JFrame {
         editorialField.setText("");
         autorField.setText("");
         volumenField.setText("");
-    }
-
-    public Revista mandarRevista(){;
-        return revista;
     }
 
     public Excepcion_Duplicado_De_Id verificarId(String id){

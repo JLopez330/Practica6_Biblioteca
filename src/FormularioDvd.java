@@ -116,7 +116,7 @@ public class FormularioDvd extends JFrame {
                     idsRegistro.add(aux);
                     dvd = new Dvd(titulo, fecha, id, director, productora, duracion);
                     inventario.agregarAlInventario(dvd);
-                    JOptionPane.showMessageDialog(this,"Libro añadido!","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"DVD añadido!","Atencion",JOptionPane.INFORMATION_MESSAGE);
                     limpiarEspacios();
                 }
             }catch (Excepcion_Duplicado_De_Id e) {
@@ -134,10 +134,6 @@ public class FormularioDvd extends JFrame {
         directorField.setText("");
         productoraField.setText("");
         duracionField.setText("");
-    }
-
-    public Dvd mandarDvd(){;
-        return dvd;
     }
 
     public Excepcion_Duplicado_De_Id verificarId(String id){
