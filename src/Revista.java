@@ -52,4 +52,12 @@ public class Revista extends ElementoBiblioteca{
         System.out.println("Autor: "+autor);
         System.out.println("Volumen: "+volumen);
     }
+
+    public String toString() {
+        return "Datos de una Revista: \n" + super.toString() +
+                "Paginas: " + paginas + "\n" +
+                "Editorial: " + editorial + "\n" +
+                "Autor: " + autor + "\n" +
+                "Volumen: " + volumen;
+    }
 }
