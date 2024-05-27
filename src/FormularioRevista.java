@@ -121,7 +121,7 @@ public class FormularioRevista extends JFrame {
             String paginas = paginasField.getText();
             String editorial = editorialField.getText();
             String autor = autorField.getText();
-            String volumen = autorField.getText();
+            String volumen = volumenField.getText();
             try{
                 Excepcion_Duplicado_De_Id expecion = verificarId(aux);
                 if(expecion!=null){
